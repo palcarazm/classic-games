@@ -1,2 +1,6 @@
+/** Commons */
+p{text-align: justify;}
+
+/** Darkmode */
 .bs-darkmode-dark img.icon-line {filter: invert(1);}
 .bs-darkmode-dark img:not(.icon) {filter: brightness(.8);}
