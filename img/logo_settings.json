@@ -1,0 +1,37 @@
+{
+  "version": "v1.0.0",
+  "components": {
+    "icon": {
+      "name": "icon",
+      "text": "",
+      "color": "#0d6efd",
+      "fontFamily": "\"Font Awesome 6 Free\"",
+      "fontWeight": "900",
+      "fontSize": 100,
+      "letterSpacing": 0
+    },
+    "main": {
+      "name": "main",
+      "text": "Simple",
+      "color": "#0d6efd",
+      "fontFamily": "Righteous",
+      "fontWeight": "normal",
+      "fontSize": 75,
+      "letterSpacing": 0
+    },
+    "accent": {
+      "name": "accent",
+      "text": "Games",
+      "color": "#f8f9fa",
+      "fontFamily": "Orbitron",
+      "fontWeight": "normal",
+      "fontSize": 75,
+      "letterSpacing": 0
+    }
+  },
+  "global": {
+    "offset": { "size": 5, "color": "#e2e2e2" },
+    "layout": "HORIZONTAL",
+    "shapes": true
+  }
+}
