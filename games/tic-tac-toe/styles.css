@@ -1,0 +1,53 @@
+/** Board */
+#board .row{
+    justify-content: center;
+}
+#board .col {
+    height: 5rem;
+    flex-basis: 5rem;
+    flex-grow: 0;
+    border: 1px solid var(--bs-secondary);
+    position: relative;
+}
+#board .col[board-row="0"] {border-top:none;}
+#board .col[board-row="2"] {border-bottom:none;}
+#board .col[board-col="0"] {border-left:none;}
+#board .col[board-col="2"] {border-right:none;}
+
+#board .col > i{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 2rem;
+}
+#board .col > i.fa-circle{color: var(--bs-warning);}
+#board .col > i.fa-times{color: var(--bs-danger);}
+
+/** Game logic */
+/* Human Move */
+#board[game-status="human move"] .col.empty{cursor: pointer;}
+#board[game-status="human move"] .col:not(.empty){cursor: not-allowed;}
+#board .col.empty > i{
+    opacity: .5;
+    font-size: 3rem;
+}
+#board[game-status="human move"] .col.circle_selected > i {
+    opacity: .5;
+    color: var(--bs-gray);
+}
+
+/* Computer Move */
+#board[game-status="computer move"] .col{cursor: wait;}
+
+/* Human Select */
+#board[game-status="human select"] .col.circle{cursor: move;}
+#board[game-status="human select"] .col.circle:hover > i {font-size: 3rem;}
+#board[game-status="human select"] .col:not(.circle){cursor: not-allowed;}
+#board[game-status="human select"] .col:not(.circle) > i {opacity: .5;}
+
+/* Gameover*/
+#board[game-status="gameover"] .col{cursor: not-allowed;}
+#board[game-status="gameover"] .col > i {color: var(--bs-gray);}
+#board.fail[game-status="gameover"] .col.times > i {color: var(--bs-success);}
+#board.success[game-status="gameover"] .col.circle > i {color: var(--bs-success);}

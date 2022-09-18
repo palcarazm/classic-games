@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="Tic Tac Toe classic game built in javascript">
+    <meta name="keywords" content="bootstrap, javascript, games, board games, classic games, tic tac toe, noughts and crosses , Xs and Os">
+    <meta name="author" content="https://github.com/palcarazm">
+    <meta name="version" content="v0.0.0">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="1 month">
+    <title>Tic Tac Toe | Simple Games</title>
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+
+    <meta property="og:title" content="Tic Tac Toe | Simple Games" />
+    <meta property="og:description" content="Tic Tac Toe classic game built in javascript" />
+    <meta property="og:url" content="https://palcarazm.github.io/bs-darkmode/" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/palcarazm/classic-games/main/img/card.png" />
+    <meta property="og:image:width" content="728" />
+    <meta property="og:image:height" content="364" />
+
+    <meta name="twitter:title" content="Tic Tac Toe | Simple Games">
+    <meta name="twitter:description" content="Tic Tac Toe classic game built in javascript">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/palcarazm/classic-games/main/img/card.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+        integrity="sha256-KTPJY0ik6ufLv48oDKCYFYaptcCX75UrmWytfSjy+tA=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"
+        integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-darkmode@2.0.0/css/bs-darkmode.min.css"
+        integrity="sha256-dg98wgzQN2Y519HWnkFOe0YBufzLjSwGaQUZ8Rsq6uc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../src/css/styles.css">
+    <link rel="stylesheet" href="./tic-tac-toe/styles.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N6BPQJWL76"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-N6BPQJWL76');
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../../">
+                    <img src="../../img/logo.png" alt="Simple Games" height="30">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../../">Home</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <button class="btn btn-secondary" data-plugin="bsdarkmode" allowsCookie></button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="px-5 py-3 container" style="max-width: 800px;">
+        <h1>Tic Tac Toe</h1>
+        <p class="lead">Tic-tac-toe , noughts and crosses , or Xs and Os is a classic game for two players who take turns marking the spaces in a three-by-three grid with X or O. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.</p>
+        <small class="text-muted">Refer to Wikipedia for <a href="https://en.wikipedia.org/wiki/Tic-tac-toe" target="_blank">more information</a>.</small>
+    </section>
+    <main class="px-5 py-3 container" style="max-width: 800px;">
+        <div class="container p-3 bg-light rounded-3 mb-2" id="board">
+            <div class="row">
+                <div class="col" board-row="0" board-col="0"></div>
+                <div class="col" board-row="0" board-col="1"></div>
+                <div class="col" board-row="0" board-col="2"></div>
+            </div>
+            <div class="row">
+                <div class="col" board-row="1" board-col="0"></div>
+                <div class="col" board-row="1" board-col="1"></div>
+                <div class="col" board-row="1" board-col="2"></div>
+            </div>
+            <div class="row">
+                <div class="col" board-row="2" board-col="0"></div>
+                <div class="col" board-row="2" board-col="1"></div>
+                <div class="col" board-row="2" board-col="2"></div>
+            </div>
+        </div>
+        <div class="alert" role="alert" id="alert"></div>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-warning" id="reset"><i class="fas fa-undo-alt" aria-hidden="true"></i> Reset</button>
+        </div>
+    </main>
+
+    <footer class="bg-light border-top p-4">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-around align-items-center mb-4">
+                <div class="d-flex">
+                    <a href="https://github.com/palcarazm" class="me-2" target="_blank">
+                        <img src="https://avatars.githubusercontent.com/u/79061172" alt="@palcarazm" sizes="32"
+                            width="32" height="32" class="avatar rounded-circle">
+                    </a>
+                    <a href="https://github.com/palcarazm" class="text-decoration-none flex-self-center">
+                        <span class="text-body fw-bold me-2">palcarazm</span>
+                        <span class="text-muted fw-light">Pablo Alcaraz Martínez</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="https://github.com/palcarazm/classic-games/blob/main/ACKNOWLEDGE.md" target="_blank"
+                        class="text-decoration-none fw-bold text-body">Acknowledgement</a>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+                <div class="mb-2 mb-md-0 me-md-2">
+                    <a href="https://github.com/sponsors/palcarazm" title="Sponsors">
+                        <img src="https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white"
+                            class="icon" alt="GitHub Sponsors" />
+                    </a>
+                </div>
+                <div class=" me-md-2 me-md-2">
+                    <a href="http://github.com/palcarazm/classic-games" target="_blank" rel="noopener noreferrer"
+                        title="GitHub repository">
+                        <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"
+                            class="icon" alt="GitHub">
+                    </a>
+                </div>
+                <div class=" me-md-2">
+                    <a href="https://github.com/palcarazm/classic-games/blob/main/LICENSE" target="_blank"
+                        rel="noopener noreferrer" title="License">
+                        <img src="https://img.shields.io/github/license/palcarazm/classic-games.svg?style=for-the-badge"
+                            class="icon" alt="License">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha256-qFsv4wd3fI60fwah7sOZ/L3f6D0lL9IC0+E1gFH88n0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-darkmode@2.0.0/js/bs-darkmode.jquery.js"
+        integrity="sha256-WcCoyybQGFNxUl/2i/LH6DIMGlNY9voCEny3vjK+Hj0=" crossorigin="anonymous"></script>
+    <script type="module" src="./tic-tac-toe/script.js"></script>
+
+</body>
+
+</html>
