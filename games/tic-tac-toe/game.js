@@ -129,6 +129,7 @@ export class TicTacToe {
 
   /**
    * Update game status
+   * @private 
    */
   #next() {
     switch (this.#status) {
@@ -159,6 +160,7 @@ export class TicTacToe {
    * Check if is needed to select a piece to move
    * @param {string} piece Piece to check
    * @returns {boolean}
+   * @private 
    */
   #needSelect(piece) {
     return (
@@ -172,6 +174,7 @@ export class TicTacToe {
    * Check if there is the player with the providded piece has win
    * @param {string} piece Piece to check
    * @returns {boolean}
+   * @private 
    */
   #hasWin(piece) {
     let result;
@@ -193,6 +196,7 @@ export class TicTacToe {
    * @param {int} row Row number [0 to 2]
    * @param {int} col Column number [0 to 2]
    * @returns {boolean}
+   * @private 
    */
   #checkWin(piece, row, col) {
     let result = false;
@@ -222,6 +226,7 @@ export class TicTacToe {
    * @param {int} row Row number [0 to 2]
    * @param {int} col Column number [0 to 2]
    * @returns {boolean}
+   * @private 
    */
   #checkThreats(piece, row, col) {
     let result = false;
@@ -253,6 +258,7 @@ export class TicTacToe {
    * @param {int} row_inc Row increment
    * @param {inf} col_inc Column increment
    * @returns {boolean}
+   * @private 
    */
   #checkDirection(piece, row, col, row_inc, col_inc) {
     return (
@@ -268,6 +274,7 @@ export class TicTacToe {
    * Get piece positions
    * @param {string} piece Piece to check
    * @returns {Array} cells
+   * @private 
    */
   #getPieces(piece) {
     let positions = [];
