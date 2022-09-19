@@ -25,6 +25,9 @@ $(document).ready(function () {
           ? TicTacToe.STATUS.HUMAN_MOVE
           : TicTacToe.STATUS.COMPUTER_MOVE
       );
+    if (GAME.getStatus() == TicTacToe.STATUS.COMPUTER_MOVE) {
+    GAME.computerMove();
+    }
     sync();
   });
   $COLS.mouseenter(mouseenterHandler);
