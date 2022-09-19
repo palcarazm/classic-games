@@ -225,12 +225,25 @@ export class TicTacToe {
    * @returns {boolean}
    */
   #checkThreats(piece, row, col) {
-    return (
-      this.#checkDirection(piece, row, col, 1, 0) ||
-      this.#checkDirection(piece, row, col, 0, 1) ||
-      this.#checkDirection(piece, row, col, 1, 1) ||
-      this.#checkDirection(piece, row, col, 1, -1)
-    );
+    let result = false;
+    if (this.#checkDirection(piece, row, col, 1, 0)) {
+      if (this.#checkDirection(this.PIECES.empty.string, row, col, 2, 0)) {
+        result = true;
+      }
+    } else if (this.#checkDirection(piece, row, col, 0, 1)) {
+      if (this.#checkDirection(this.PIECES.empty.string, row, col, 0, 2)) {
+        result = true;
+      }
+    } else if (this.#checkDirection(piece, row, col, 1, 1)) {
+      if (this.#checkDirection(this.PIECES.empty.string, row, col, 2, 2)) {
+        result = true;
+      }
+    } else if (this.#checkDirection(piece, row, col, 1, -1)) {
+      if (this.#checkDirection(this.PIECES.empty.string, row, col, 2, -2)) {
+        result = true;
+      }
+    }
+    return result;
   }
 
   /**
@@ -270,7 +283,7 @@ export class TicTacToe {
   }
 
   computerMove() {
-    this.playMove(this.#ALGORITM.alphaBetaPruning(this,3));
+    this.playMove(this.#ALGORITM.alphaBetaPruning(this,5));
   }
 
   /**
@@ -306,17 +319,18 @@ export class TicTacToe {
    * @returns {int} Heuristic value of the node
    */
   getHeuristic(_isMax) {
-    let value =
-      (this.#hasWin(this.COMPUTER.string) - this.#hasWin(this.HUMAN.string)) *
-      100;
+    let value =0;
+
+    value += this.#hasWin(this.COMPUTER.string) * 100;
+    value -= this.#hasWin(this.HUMAN.string) * 100;
 
     for (let row_ind = 0; row_ind < this.#board.length; row_ind++) {
       for (let col_ind = 0; col_ind < this.#board[row_ind].length; col_ind++) {
         if (this.#board[row_ind][col_ind] == this.COMPUTER.string) {
-          value -=
+          value +=
             this.#checkThreats(this.COMPUTER.string, row_ind, col_ind) * 2;
         } else if (this.#board[row_ind][col_ind] == this.HUMAN.string) {
-          value += this.#checkThreats(this.HUMAN.string, row_ind, col_ind) * 2;
+          value -= this.#checkThreats(this.HUMAN.string, row_ind, col_ind) * 2;
         }
       }
     }
