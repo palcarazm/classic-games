@@ -1,6 +1,5 @@
 import { algoritms } from "../src/algorithms.js";
 export class TicTacToe {
-  #ALGORITM = new algoritms();
   HUMAN = {
     string: "circle",
     html: '<i class="far fa-circle"></i>',
@@ -283,7 +282,7 @@ export class TicTacToe {
   }
 
   computerMove() {
-    this.playMove(this.#ALGORITM.alphaBetaPruning(this,5));
+    this.playMove(algoritms.alphaBetaPruning(this,5));
   }
 
   /**
@@ -294,7 +293,7 @@ export class TicTacToe {
   getChilds() {
     let moves = [];
     let turn =
-      this.#status == "human move" ? this.HUMAN.string : this.COMPUTER.string;
+      this.#status.includes('human') ? this.HUMAN.string : this.COMPUTER.string;
     let emptys = this.#getPieces(this.PIECES.empty.string);
 
     if (this.#needSelect(turn)) {
@@ -319,18 +318,18 @@ export class TicTacToe {
    * @returns {int} Heuristic value of the node
    */
   getHeuristic(_isMax) {
-    let value =0;
+    let value = 0;
 
     value += this.#hasWin(this.COMPUTER.string) * 100;
-    value -= this.#hasWin(this.HUMAN.string) * 100;
+    value -= this.#hasWin(this.HUMAN.string) * 200;
 
     for (let row_ind = 0; row_ind < this.#board.length; row_ind++) {
       for (let col_ind = 0; col_ind < this.#board[row_ind].length; col_ind++) {
         if (this.#board[row_ind][col_ind] == this.COMPUTER.string) {
           value +=
-            this.#checkThreats(this.COMPUTER.string, row_ind, col_ind) * 2;
+            this.#checkThreats(this.COMPUTER.string, row_ind, col_ind) * 10;
         } else if (this.#board[row_ind][col_ind] == this.HUMAN.string) {
-          value -= this.#checkThreats(this.HUMAN.string, row_ind, col_ind) * 2;
+          value -= this.#checkThreats(this.HUMAN.string, row_ind, col_ind) * 20;
         }
       }
     }
@@ -347,5 +346,13 @@ export class TicTacToe {
       this.setSelect(move.select.row, move.select.col);
     }
     this.setMove(move.move.row, move.move.col);
+  }
+  
+  /**
+   * Cheks is game has finished
+   * @returns {boolean}
+   */
+  hasFinished(){
+    return this.#status == 'gameover';
   }
 }
