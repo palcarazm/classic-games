@@ -34,8 +34,10 @@ $(document).ready(function () {
                 if (cell.value == GAME.PIECES.empty.string) {
                     GAME.setMove(cell.row,cell.col);
                     sync();
-                    GAME.computerMove();
-                    sync();
+                    if(GAME.getStatus() != 'gameover'){
+                        GAME.computerMove();
+                        sync();
+                    }
                 }
                 break;
             case 'human select':
