@@ -1,13 +1,13 @@
 import { TicTacToe } from "./game.js";
 
-let GAME = new TicTacToe( null, Math.random() < 0.5 ? 'human move' : 'computer move');
+let GAME = new TicTacToe( null, Math.random() < 0.5 ? TicTacToe.STATUS.HUMAN_MOVE : TicTacToe.STATUS.COMPUTER_MOVE);
 const $BOARD = $('#board');
 const $ALERT = $('#alert');
 const $COLS = $('#board .col');
 
 $(document).ready(function () {
     /** Init */
-    if(GAME.getStatus() == 'computer move'){
+    if(GAME.getStatus() == TicTacToe.STATUS.COMPUTER_MOVE){
         GAME.computerMove();
     }
     sync();
@@ -20,9 +20,9 @@ $(document).ready(function () {
     $COLS.mouseenter(function(_e){
         let cell = parseCell($(this));
         switch (GAME.getStatus()) {
-            case 'human move':
-                if (cell.value == GAME.PIECES.empty.string) {
-                    $(this).html(GAME.HUMAN.html);
+            case TicTacToe.STATUS.HUMAN_MOVE:
+                if (cell.value == TicTacToe.PIECES.empty.string) {
+                    $(this).html(TicTacToe.HUMAN.html);
                 }
                 break;
         
@@ -33,18 +33,18 @@ $(document).ready(function () {
     $COLS.on('click touch',function(_e){
         let cell = parseCell($(this));
         switch (GAME.getStatus()) {
-            case 'human move':
-                if (cell.value == GAME.PIECES.empty.string) {
+            case TicTacToe.STATUS.HUMAN_MOVE:
+                if (cell.value == TicTacToe.PIECES.empty.string) {
                     GAME.setMove(cell.row,cell.col);
                     sync();
-                    if(GAME.getStatus() != 'gameover'){
+                    if(!GAME.hasFinished()){
                         GAME.computerMove();
                         sync();
                     }
                 }
                 break;
-            case 'human select':
-                if (cell.value == GAME.HUMAN.string) {
+            case TicTacToe.STATUS.HUMAN_SELECT:
+                if (cell.value == TicTacToe.HUMAN.string) {
                     GAME.setSelect(cell.row,cell.col);
                     sync();
                 }
@@ -57,9 +57,9 @@ $(document).ready(function () {
     $COLS.mouseleave(function(_e){
         let cell = parseCell($(this));
         switch (GAME.getStatus()) {
-            case 'human move':
-                if (cell.value == GAME.PIECES.empty.string) {
-                    $(this).html(GAME.PIECES.empty.html);
+            case TicTacToe.STATUS.HUMAN_MOVE:
+                if (cell.value == TicTacToe.PIECES.empty.string) {
+                    $(this).html(TicTacToe.PIECES.empty.html);
                 }
                 break;
         
@@ -76,25 +76,25 @@ function sync() {
         $(this)
             .attr('class','col')
             .addClass(cell.value)
-            .html(GAME.PIECES[cell.value].html);
+            .html(TicTacToe.PIECES[cell.value].html);
 
     });
 
     switch (GAME.getStatus()) {
-        case 'human move':
+        case TicTacToe.STATUS.HUMAN_MOVE:
             $ALERT
                 .attr('class','alert')
                 .addClass('alert-info')
                 .html("Click in a empty cell to move.");
             break;
-        case 'human select':
+        case TicTacToe.STATUS.HUMAN_SELECT:
             $ALERT
                 .attr('class','alert')
                 .addClass('alert-info')
                 .html("Click in one of your pieces to move.");
             break;
-        case 'gameover':
-            if(GAME.getWinner() == GAME.HUMAN.string){
+        case TicTacToe.STATUS.GAMEOVER:
+            if(GAME.getWinner() == TicTacToe.HUMAN.string){
                 $ALERT
                     .attr('class','alert')
                     .addClass('alert-success')

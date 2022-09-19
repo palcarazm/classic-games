@@ -1,30 +1,37 @@
 import { algoritms } from "../src/algorithms.js";
 export class TicTacToe {
-  HUMAN = {
+  static HUMAN = {
     string: "circle",
     html: '<i class="far fa-circle"></i>',
   };
-  COMPUTER = {
+  static COMPUTER = {
     string: "times",
     html: '<i class="fas fa-times"></i>',
   };
-  PIECES = {
-    circle: this.HUMAN,
+  static PIECES = {
+    circle: TicTacToe.HUMAN,
     circle_selected: {
       string: "circle_selected",
-      html: this.HUMAN.html,
+      html: TicTacToe.HUMAN.html,
     },
-    times: this.COMPUTER,
+    times: TicTacToe.COMPUTER,
     times_selected: {
       string: "times_selected",
-      html: this.COMPUTER.html,
+      html: TicTacToe.COMPUTER.html,
     },
     empty: {
       string: "empty",
       html: "",
     },
   };
-  #status
+  static STATUS = {
+    HUMAN_SELECT: "human select",
+    HUMAN_MOVE: "human move",
+    COMPUTER_SELECT: "computer select",
+    COMPUTER_MOVE: "computer move",
+    GAMEOVER: "gameover",
+  };
+  #status;
   #winner = null;
   #board;
 
@@ -33,33 +40,36 @@ export class TicTacToe {
    * @param {array} board Game board
    * @param {string} status Game status
    */
-  constructor(board = null, status = null){
+  constructor(board = null, status = null) {
     this.#board = board || [
       [
-        this.PIECES.empty.string,
-        this.PIECES.empty.string,
-        this.PIECES.empty.string,
+        TicTacToe.PIECES.empty.string,
+        TicTacToe.PIECES.empty.string,
+        TicTacToe.PIECES.empty.string,
       ],
       [
-        this.PIECES.empty.string,
-        this.PIECES.empty.string,
-        this.PIECES.empty.string,
+        TicTacToe.PIECES.empty.string,
+        TicTacToe.PIECES.empty.string,
+        TicTacToe.PIECES.empty.string,
       ],
       [
-        this.PIECES.empty.string,
-        this.PIECES.empty.string,
-        this.PIECES.empty.string,
+        TicTacToe.PIECES.empty.string,
+        TicTacToe.PIECES.empty.string,
+        TicTacToe.PIECES.empty.string,
       ],
     ];
-    this.#status = status || "human move";
+    this.#status = status || TicTacToe.STATUS.HUMAN_MOVE;
   }
 
   /**
    * Clone the current game
    * @returns Deep copy of Tic Tac Toe game
    */
-  clone(){
-    return new TicTacToe([[...this.#board[0]],[...this.#board[1]],[...this.#board[2]]], this.#status);
+  clone() {
+    return new TicTacToe(
+      [[...this.#board[0]], [...this.#board[1]], [...this.#board[2]]],
+      this.#status
+    );
   }
 
   /**
@@ -94,7 +104,7 @@ export class TicTacToe {
       for (let col_ind = 0; col_ind < this.#board[row_ind].length; col_ind++) {
         if (this.#board[row_ind][col_ind].includes("_selected")) {
           found_selected = true;
-          this.#board[row_ind][col_ind] = this.PIECES.empty.string;
+          this.#board[row_ind][col_ind] = TicTacToe.PIECES.empty.string;
           break;
         }
       }
@@ -102,12 +112,14 @@ export class TicTacToe {
     }
 
     let piece =
-      this.#status == "human move" ? this.HUMAN.string : this.COMPUTER.string;
+      this.#status == TicTacToe.STATUS.HUMAN_MOVE
+        ? TicTacToe.HUMAN.string
+        : TicTacToe.COMPUTER.string;
 
     this.#board[row][col] = piece;
 
     if (this.#hasWin(piece)) {
-      this.#status = "gameover";
+      this.#status = TicTacToe.STATUS.GAMEOVER;
       this.#winner = piece;
     } else {
       this.#next();
@@ -121,37 +133,37 @@ export class TicTacToe {
    */
   setSelect(row, col) {
     this.#board[row][col] =
-      (this.#status == "human select"
-        ? this.HUMAN.string
-        : this.COMPUTER.string) + "_selected";
+      (this.#status == TicTacToe.STATUS.HUMAN_SELECT
+        ? TicTacToe.HUMAN.string
+        : TicTacToe.COMPUTER.string) + "_selected";
     this.#next();
   }
 
   /**
    * Update game status
-   * @private 
+   * @private
    */
   #next() {
     switch (this.#status) {
-      case "human move":
-        if (this.#needSelect(this.COMPUTER.string)) {
-          this.#status = "computer select";
+      case TicTacToe.STATUS.HUMAN_MOVE:
+        if (this.#needSelect(TicTacToe.COMPUTER.string)) {
+          this.#status = TicTacToe.STATUS.COMPUTER_SELECT;
         } else {
-          this.#status = "computer move";
+          this.#status = TicTacToe.STATUS.COMPUTER_MOVE;
         }
         break;
-      case "computer move":
-        if (this.#needSelect(this.HUMAN.string)) {
-          this.#status = "human select";
+      case TicTacToe.STATUS.COMPUTER_MOVE:
+        if (this.#needSelect(TicTacToe.HUMAN.string)) {
+          this.#status = TicTacToe.STATUS.HUMAN_SELECT;
         } else {
-          this.#status = "human move";
+          this.#status = TicTacToe.STATUS.HUMAN_MOVE;
         }
         break;
-      case "human select":
-        this.#status = "human move";
+      case TicTacToe.STATUS.HUMAN_SELECT:
+        this.#status = TicTacToe.STATUS.HUMAN_MOVE;
         break;
-      case "computer select":
-        this.#status = "computer move";
+      case TicTacToe.STATUS.COMPUTER_SELECT:
+        this.#status = TicTacToe.STATUS.COMPUTER_MOVE;
         break;
     }
   }
@@ -160,7 +172,7 @@ export class TicTacToe {
    * Check if is needed to select a piece to move
    * @param {string} piece Piece to check
    * @returns {boolean}
-   * @private 
+   * @private
    */
   #needSelect(piece) {
     return (
@@ -174,7 +186,7 @@ export class TicTacToe {
    * Check if there is the player with the providded piece has win
    * @param {string} piece Piece to check
    * @returns {boolean}
-   * @private 
+   * @private
    */
   #hasWin(piece) {
     let result;
@@ -196,7 +208,7 @@ export class TicTacToe {
    * @param {int} row Row number [0 to 2]
    * @param {int} col Column number [0 to 2]
    * @returns {boolean}
-   * @private 
+   * @private
    */
   #checkWin(piece, row, col) {
     let result = false;
@@ -226,24 +238,26 @@ export class TicTacToe {
    * @param {int} row Row number [0 to 2]
    * @param {int} col Column number [0 to 2]
    * @returns {boolean}
-   * @private 
+   * @private
    */
   #checkThreats(piece, row, col) {
     let result = false;
     if (this.#checkDirection(piece, row, col, 1, 0)) {
-      if (this.#checkDirection(this.PIECES.empty.string, row, col, 2, 0)) {
+      if (this.#checkDirection(TicTacToe.PIECES.empty.string, row, col, 2, 0)) {
         result = true;
       }
     } else if (this.#checkDirection(piece, row, col, 0, 1)) {
-      if (this.#checkDirection(this.PIECES.empty.string, row, col, 0, 2)) {
+      if (this.#checkDirection(TicTacToe.PIECES.empty.string, row, col, 0, 2)) {
         result = true;
       }
     } else if (this.#checkDirection(piece, row, col, 1, 1)) {
-      if (this.#checkDirection(this.PIECES.empty.string, row, col, 2, 2)) {
+      if (this.#checkDirection(TicTacToe.PIECES.empty.string, row, col, 2, 2)) {
         result = true;
       }
     } else if (this.#checkDirection(piece, row, col, 1, -1)) {
-      if (this.#checkDirection(this.PIECES.empty.string, row, col, 2, -2)) {
+      if (
+        this.#checkDirection(TicTacToe.PIECES.empty.string, row, col, 2, -2)
+      ) {
         result = true;
       }
     }
@@ -258,7 +272,7 @@ export class TicTacToe {
    * @param {int} row_inc Row increment
    * @param {inf} col_inc Column increment
    * @returns {boolean}
-   * @private 
+   * @private
    */
   #checkDirection(piece, row, col, row_inc, col_inc) {
     return (
@@ -274,7 +288,7 @@ export class TicTacToe {
    * Get piece positions
    * @param {string} piece Piece to check
    * @returns {Array} cells
-   * @private 
+   * @private
    */
   #getPieces(piece) {
     let positions = [];
@@ -289,7 +303,7 @@ export class TicTacToe {
   }
 
   computerMove() {
-    this.playMove(algoritms.alphaBetaPruning(this,5));
+    this.playMove(algoritms.alphaBetaPruning(this, 5));
   }
 
   /**
@@ -300,8 +314,11 @@ export class TicTacToe {
   getChilds() {
     let moves = [];
     let turn =
-      this.#status.includes('human') ? this.HUMAN.string : this.COMPUTER.string;
-    let emptys = this.#getPieces(this.PIECES.empty.string);
+      this.#status == TicTacToe.STATUS.HUMAN_MOVE ||
+      this.#status == TicTacToe.STATUS.HUMAN_SELECT
+        ? TicTacToe.HUMAN.string
+        : TicTacToe.COMPUTER.string;
+    let emptys = this.#getPieces(TicTacToe.PIECES.empty.string);
 
     if (this.#needSelect(turn)) {
       let pieces = this.#getPieces(turn);
@@ -327,16 +344,18 @@ export class TicTacToe {
   getHeuristic(_isMax) {
     let value = 0;
 
-    value += this.#hasWin(this.COMPUTER.string) * 100;
-    value -= this.#hasWin(this.HUMAN.string) * 200;
+    value += this.#hasWin(TicTacToe.COMPUTER.string) * 100;
+    value -= this.#hasWin(TicTacToe.HUMAN.string) * 200;
 
     for (let row_ind = 0; row_ind < this.#board.length; row_ind++) {
       for (let col_ind = 0; col_ind < this.#board[row_ind].length; col_ind++) {
-        if (this.#board[row_ind][col_ind] == this.COMPUTER.string) {
+        if (this.#board[row_ind][col_ind] == TicTacToe.COMPUTER.string) {
           value +=
-            this.#checkThreats(this.COMPUTER.string, row_ind, col_ind) * 10;
-        } else if (this.#board[row_ind][col_ind] == this.HUMAN.string) {
-          value -= this.#checkThreats(this.HUMAN.string, row_ind, col_ind) * 20;
+            this.#checkThreats(TicTacToe.COMPUTER.string, row_ind, col_ind) *
+            10;
+        } else if (this.#board[row_ind][col_ind] == TicTacToe.HUMAN.string) {
+          value -=
+            this.#checkThreats(TicTacToe.HUMAN.string, row_ind, col_ind) * 20;
         }
       }
     }
@@ -354,12 +373,12 @@ export class TicTacToe {
     }
     this.setMove(move.move.row, move.move.col);
   }
-  
+
   /**
    * Cheks is game has finished
    * @returns {boolean}
    */
-  hasFinished(){
-    return this.#status == 'gameover';
+  hasFinished() {
+    return this.#status == TicTacToe.STATUS.GAMEOVER;
   }
 }
