@@ -1,12 +1,15 @@
 import { TicTacToe } from "./game.js";
 
-let GAME = new TicTacToe();
+let GAME = new TicTacToe( null, Math.random() < 0.5 ? 'human move' : 'computer move');
 const $BOARD = $('#board');
 const $ALERT = $('#alert');
 const $COLS = $('#board .col');
 
 $(document).ready(function () {
     /** Init */
+    if(GAME.getStatus() == 'computer move'){
+        GAME.computerMove();
+    }
     sync();
 
     /** Listeners */
