@@ -212,20 +212,20 @@ export class TicTacToe {
    */
   #checkWin(piece, row, col) {
     let result = false;
-    if (this.#checkDirection(piece, row, col, 1, 0)) {
-      if (this.#checkDirection(piece, row, col, 2, 0)) {
+    if (this.#checkDirection([piece], row, col, 1, 0)) {
+      if (this.#checkDirection([piece], row, col, 2, 0)) {
         result = true;
       }
-    } else if (this.#checkDirection(piece, row, col, 0, 1)) {
-      if (this.#checkDirection(piece, row, col, 0, 2)) {
+    } else if (this.#checkDirection([piece], row, col, 0, 1)) {
+      if (this.#checkDirection([piece], row, col, 0, 2)) {
         result = true;
       }
-    } else if (this.#checkDirection(piece, row, col, 1, 1)) {
-      if (this.#checkDirection(piece, row, col, 2, 2)) {
+    } else if (this.#checkDirection([piece], row, col, 1, 1)) {
+      if (this.#checkDirection([piece], row, col, 2, 2)) {
         result = true;
       }
-    } else if (this.#checkDirection(piece, row, col, 1, -1)) {
-      if (this.#checkDirection(piece, row, col, 2, -2)) {
+    } else if (this.#checkDirection([piece], row, col, 1, -1)) {
+      if (this.#checkDirection([piece], row, col, 2, -2)) {
         result = true;
       }
     }
@@ -241,23 +241,22 @@ export class TicTacToe {
    * @private
    */
   #checkThreats(piece, row, col) {
+    let pieces = [piece, TicTacToe.PIECES.empty.string];
     let result = false;
-    if (this.#checkDirection(piece, row, col, 1, 0)) {
-      if (this.#checkDirection(TicTacToe.PIECES.empty.string, row, col, 2, 0)) {
+    if (this.#checkDirection(pieces, row, col, 1, 0)) {
+      if (this.#checkDirection(pieces, row, col, 2, 0)) {
         result = true;
       }
-    } else if (this.#checkDirection(piece, row, col, 0, 1)) {
-      if (this.#checkDirection(TicTacToe.PIECES.empty.string, row, col, 0, 2)) {
+    } else if (this.#checkDirection(pieces, row, col, 0, 1)) {
+      if (this.#checkDirection(pieces, row, col, 0, 2)) {
         result = true;
       }
-    } else if (this.#checkDirection(piece, row, col, 1, 1)) {
-      if (this.#checkDirection(TicTacToe.PIECES.empty.string, row, col, 2, 2)) {
+    } else if (this.#checkDirection(pieces, row, col, 1, 1)) {
+      if (this.#checkDirection(pieces, row, col, 2, 2)) {
         result = true;
       }
-    } else if (this.#checkDirection(piece, row, col, 1, -1)) {
-      if (
-        this.#checkDirection(TicTacToe.PIECES.empty.string, row, col, 2, -2)
-      ) {
+    } else if (this.#checkDirection(pieces, row, col, 1, -1)) {
+      if (this.#checkDirection(pieces, row, col, 2, -2)) {
         result = true;
       }
     }
@@ -266,7 +265,7 @@ export class TicTacToe {
 
   /**
    * Check if there are a piece in this direction and step
-   * @param {string} piece Piece to check
+   * @param {Array} pieces Pieces to check
    * @param {int} row Row number [0 to 2]
    * @param {int} col Column number [0 to 2]
    * @param {int} row_inc Row increment
@@ -274,13 +273,13 @@ export class TicTacToe {
    * @returns {boolean}
    * @private
    */
-  #checkDirection(piece, row, col, row_inc, col_inc) {
+  #checkDirection(pieces, row, col, row_inc, col_inc) {
     return (
       row + row_inc < this.#board.length &&
       row + row_inc >= 0 &&
       col + col_inc < this.#board[row].length &&
       col + col_inc >= 0 &&
-      this.#board[row + row_inc][col + col_inc] == piece
+      pieces.includes(this.#board[row + row_inc][col + col_inc])
     );
   }
 
@@ -303,7 +302,7 @@ export class TicTacToe {
   }
 
   computerMove() {
-    this.playMove(algoritms.alphaBetaPruning(this, 5));
+    this.playMove(algoritms.alphaBetaPruning(this, 6));
   }
 
   /**
