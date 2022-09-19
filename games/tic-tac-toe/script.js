@@ -19,7 +19,12 @@ $(document).ready(function () {
 
   /** Listeners */
   $("#reset").on("click touch", function (_e) {
-    GAME = new TicTacToe();
+    GAME = new TicTacToe(
+        null,
+        Math.random() < 0.5
+          ? TicTacToe.STATUS.HUMAN_MOVE
+          : TicTacToe.STATUS.COMPUTER_MOVE
+      );
     sync();
   });
   $COLS.mouseenter(mouseenterHandler);

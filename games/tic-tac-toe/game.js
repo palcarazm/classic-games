@@ -355,6 +355,12 @@ export class TicTacToe {
         } else if (this.#board[row_ind][col_ind] == TicTacToe.HUMAN.string) {
           value -=
             this.#checkThreats(TicTacToe.HUMAN.string, row_ind, col_ind) * 20;
+        }else{
+          value +=
+            this.#checkWin(TicTacToe.COMPUTER.string, row_ind, col_ind) *
+            10;
+          value -=
+            this.#checkWin(TicTacToe.HUMAN.string, row_ind, col_ind) * 20;
         }
       }
     }
