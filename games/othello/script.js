@@ -130,8 +130,10 @@ function clickHandler(evt) {
       GAME.setMove(parseInt(cell.row), parseInt(cell.col));
       sync();
       if (!GAME.hasFinished()) {
-        GAME.computerMove();
-        sync();
+        setTimeout(()=>{
+          GAME.computerMove();
+          sync();
+        }, 1000);
       }
     }
   }
