@@ -1,5 +1,5 @@
 [![GitHub license](https://img.shields.io/github/license/palcarazm/classic-games.svg)](https://github.com/palcarazm/classic-games/blob/master/LICENSE)
-[![Latest release](https://img.shields.io/github/package-json/v/palcarazm/classic-games/master?logo=github)](https://github.com/palcarazm/classic-games/releases)
+[![Latest release](https://img.shields.io/github/v/release/palcarazm/classic-games?display_name=tag&include_prereleases&sort=semver&logo=github)](https://github.com/palcarazm/classic-games/releases)
 [![Maintenance](https://img.shields.io/badge/maintained%3F-yes-success.svg)](https://github.com/palcarazm/classic-games/graphs/contributors)
 [![Funding](https://img.shields.io/badge/sponsor-30363D?style=flat&logo=GitHub-Sponsors&logoColor=#white)](https://github.com/sponsors/palcarazm)
 [![visitor](https://visitor-counter-badge.vercel.app/api/palcarazm/classic-games?color=informational&style=flat)](https://palcarazm.github.io/classic-games)
