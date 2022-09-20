@@ -5,24 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="Simple classic games built in javascript">
-    <meta name="keywords" content="bootstrap, javascript, games, board games, classic games">
+    <meta name="description" content="Othello classic game built in javascript">
+    <meta name="keywords" content="bootstrap, javascript, games, board games, classic games, othello, reversi">
     <meta name="author" content="https://github.com/palcarazm">
     <meta name="version" content="v0.0.0">
     <meta name="robots" content="index, follow">
     <meta name="revisit-after" content="1 month">
-    <title>Simple Games</title>
-    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <title>Othello | Simple Games</title>
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
 
-    <meta property="og:title" content="Simple Games" />
-    <meta property="og:description" content="Simple classic games built in javascript" />
+    <meta property="og:title" content="Othello | Simple Games" />
+    <meta property="og:description" content="Othello classic game built in javascript" />
     <meta property="og:url" content="https://palcarazm.github.io/bs-darkmode/" />
     <meta property="og:image" content="https://raw.githubusercontent.com/palcarazm/classic-games/main/img/card.png" />
     <meta property="og:image:width" content="728" />
     <meta property="og:image:height" content="364" />
 
-    <meta name="twitter:title" content="Simple Games">
-    <meta name="twitter:description" content="Simple classic games built in javascript">
+    <meta name="twitter:title" content="Othello | Simple Games">
+    <meta name="twitter:description" content="Othello classic game built in javascript">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/palcarazm/classic-games/main/img/card.png">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -32,7 +32,8 @@
         integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-darkmode@2.0.0/css/bs-darkmode.min.css"
         integrity="sha256-dg98wgzQN2Y519HWnkFOe0YBufzLjSwGaQUZ8Rsq6uc=" crossorigin="anonymous">
-    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="../../src/css/styles.css">
+    <link rel="stylesheet" href="./styles.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N6BPQJWL76"></script>
     <script>
@@ -45,59 +46,45 @@
 </head>
 
 <body>
-    <div class="p-5 bg-light container position-relative" style="max-width: 800px;">
-        <a href="http://github.com/palcarazm/classic-games" class="position-absolute top-0 end-0">
-            <img width="149" height="149"
-                src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149"
-                class="attachment-full size-full icon" alt="Fork me on GitHub"
-                data-recalc-dims="1">
-        </a>
-        <div class="container-fluid py-5">
-            <img src="img/logo.png" alt="Simple Games logo" style="width: 100%; max-width: 30rem;">
-            <p class="lead col-md-8 fs-4">Simple classic games built in javascript</p>
-        </div>
-    </div>
-
-    <header class="container px-3 pt-2 d-flex justify-content-end" style="max-width: 800px;">
-        <button class="btn btn-secondary" data-plugin="bsdarkmode" allowsCookie></button>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../../">
+                    <img src="../../img/logo.png" alt="Simple Games" height="30">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../../">Home</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <button class="btn btn-secondary" data-plugin="bsdarkmode" allowsCookie></button>
+                    </form>
+                </div>
+            </div>
+        </nav>
     </header>
+    <section class="px-5 py-3 container" style="max-width: 800px;">
+        <h1>Othello</h1>
+        <p class="lead">There are sixty-four identical game pieces called disks, which are light on one side and dark on the other. Players take turns placing disks on the board with their assigned color facing up. During a play, any disks of the opponent's color that are in a straight line and bounded by the disk just placed and another disk of the current player's color are turned over to the current player's color. The objective of the game is to have the majority of disks turned to display one's color. The game end when the current player can do any move.</p>
+        <small class="text-muted">Refer to Wikipedia for <a href="https://en.wikipedia.org/wiki/Reversi" target="_blank">more information</a>.</small>
+    </section>
     <main class="px-5 py-3 container" style="max-width: 800px;">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <div class="col">
-                <div class="card bg-light h-100">
-                    <img src="img/games/tic-tac-toe.png" class="card-img-top icon icon-line pt-2 px-2" alt="Tic tac toe">
-                    <div class="card-body">
-                        <h5 class="card-title">Tic tac toe</h5>
-                    </div>
-                    <div class="card-footer d-flex justify-content-center">
-                        <a href="games/tic-tac-toe" class="btn btn-primary"><i class="far fa-play-circle"
-                                aria-hidden="true"></i> Play</a>
-                    </div>
-                </div>
+        <div class="container p-3 bg-light rounded-3 mb-2" id="board">
+            <div class="d-flex justify-content-center" id="scoreboard">
+                <div class="px-3 pt-0 pb-3  d-flex flex-column align-items-center" id="score-human"></div>
+                <div class="px-3 pt-0 pb-3 d-flex flex-column align-items-center" id="score-computer"></div>
             </div>
-            <div class="col">
-                <div class="card bg-light h-100">
-                    <img src="img/games/othello.png" class="card-img-top icon icon-line pt-2 px-2" alt="Othello">
-                    <div class="card-body">
-                        <h5 class="card-title">Othello</h5>
-                    </div>
-                    <div class="card-footer d-flex justify-content-center">
-                        <a href="games/othello" class="btn btn-primary"><i class="far fa-play-circle"
-                            aria-hidden="true"></i> Play</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card bg-light h-100">
-                    <img src="img/games/others.png" class="card-img-top icon icon-line pt-2 px-2" alt="Comming Soon">
-                    <div class="card-body">
-                        <h5 class="card-title">Comming Soon!</h5>
-                    </div>
-                    <div class="card-footer d-flex justify-content-center">
-                        <button class="btn btn-primary" disabled>Not for now</button>
-                    </div>
-                </div>
-            </div>
+        </div>
+        <div class="alert" role="alert" id="alert"></div>
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-warning" id="reset"><i class="fas fa-undo-alt" aria-hidden="true"></i> Reset</button>
         </div>
     </main>
 
@@ -153,6 +140,7 @@
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-darkmode@2.0.0/js/bs-darkmode.jquery.js"
         integrity="sha256-WcCoyybQGFNxUl/2i/LH6DIMGlNY9voCEny3vjK+Hj0=" crossorigin="anonymous"></script>
+    <script type="module" src="./script.js"></script>
 
 </body>
 
