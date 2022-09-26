@@ -3,8 +3,8 @@
   justify-content: center;
 }
 #board .col {
-  height: 5rem;
-  flex-basis: 5rem;
+  height: 2rem;
+  flex-basis: 2rem;
   flex-grow: 0;
   border: 1px solid var(--bs-secondary);
   position: relative;
@@ -27,7 +27,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2rem;
+  font-size: 1rem;
+}
+
+@media (min-width: 576px){
+  #board .col {
+      height: 3.5rem;
+      flex-basis: 3.5rem;
+  }
+  #board .col > i{font-size: 1.8rem;}
 }
 
 #board .col{ color: var(--bs-gray-500);}
@@ -63,6 +71,12 @@
   );
 }
 
+/** Scoreboard */
+#scoreboard i {font-size: 1.5rem;}
+@media (min-width: 576px){
+    #scoreboard i {font-size: 2rem;}
+}
+
 #score-human > i{color: var(--bs-success);}
 #score-computer > i{color: var(--bs-info);}
 
@@ -76,7 +90,10 @@
 }
 #board .col.empty > i {
   opacity: 0.5;
-  font-size: 3rem;
+  font-size: 1.5rem;
+}
+@media (min-width: 576px){
+  #board .col.empty > i{font-size: 2.5rem;}
 }
 
 /* Computer Move */
