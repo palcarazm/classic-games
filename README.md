@@ -8,7 +8,7 @@
 Simple classic games built in javascript
 **Website:** https://palcarazm.github.io/classic-games
 ***
-<a href="https://palcarazm.github.io/classic-games/games/tic-tac-toe/" target="_blank" title="Tic Tac Toe"><img src="img/games/tic-tac-toe.png" alt="drawing" height="75"/></a> <a href="https://palcarazm.github.io/classic-games/games/othello/" target="_blank" title="Othello"><img src="img/games/othello.png" alt="drawing" height="75"/></a>
+<a href="https://palcarazm.github.io/classic-games/games/tic-tac-toe/" target="_blank" title="Tic Tac Toe"><img src="img/games/tic-tac-toe.png" alt="drawing" height="75"/></a> <a href="https://palcarazm.github.io/classic-games/games/othello/" target="_blank" title="Othello"><img src="img/games/othello.png" alt="drawing" height="75"/></a> <a href="https://palcarazm.github.io/classic-games/games/sos/" target="_blank" title="SOS"><img src="img/games/sos.png" alt="drawing" height="75"/></a>
 
 ¿Do you like the project? Give us a :star: in [GitHub](https://github.com/palcarazm/classic-games).
 ***
