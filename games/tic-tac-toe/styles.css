@@ -9,10 +9,18 @@
     border: 1px solid var(--bs-secondary);
     position: relative;
 }
-#board .col[board-row="0"] {border-top:none;}
-#board .col[board-row="2"] {border-bottom:none;}
-#board .col[board-col="0"] {border-left:none;}
-#board .col[board-col="2"] {border-right:none;}
+#board .row:first-child .col {
+    border-top: none;
+  }
+  #board .row:last-child .col {
+    border-bottom: none;
+  }
+  #board .col:first-child {
+    border-left: none;
+  }
+  #board .col:last-child {
+    border-right: none;
+  }
 
 #board .col > i{
     position: absolute;

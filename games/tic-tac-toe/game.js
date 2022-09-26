@@ -31,6 +31,7 @@ export class TicTacToe {
     COMPUTER_MOVE: "computer move",
     GAMEOVER: "gameover",
   };
+  static NBOARD = 3;
   #status;
   #winner = null;
   #board;
@@ -41,24 +42,18 @@ export class TicTacToe {
    * @param {string} status Game status
    */
   constructor(board = null, status = null) {
-    this.#board = board || [
-      [
-        TicTacToe.PIECES.empty.string,
-        TicTacToe.PIECES.empty.string,
-        TicTacToe.PIECES.empty.string,
-      ],
-      [
-        TicTacToe.PIECES.empty.string,
-        TicTacToe.PIECES.empty.string,
-        TicTacToe.PIECES.empty.string,
-      ],
-      [
-        TicTacToe.PIECES.empty.string,
-        TicTacToe.PIECES.empty.string,
-        TicTacToe.PIECES.empty.string,
-      ],
-    ];
     this.#status = status || TicTacToe.STATUS.HUMAN_MOVE;
+    if (board) {
+      this.#board = board;
+    } else {
+      this.#board = [];
+      for (let row = 0; row < TicTacToe.NBOARD; row++) {
+        this.#board[row] = [];
+        for (let col = 0; col < TicTacToe.NBOARD; col++) {
+          this.#board[row][col] = TicTacToe.PIECES.empty.string;
+        }
+      }
+    }
   }
 
   /**
@@ -66,8 +61,13 @@ export class TicTacToe {
    * @returns Deep copy of Tic Tac Toe game
    */
   clone() {
+    let board = []
+    for (let row = 0; row < TicTacToe.NBOARD; row++) {
+     board.push([...this.#board[row]]);
+      
+    }
     return new TicTacToe(
-      [[...this.#board[0]], [...this.#board[1]], [...this.#board[2]]],
+      board,
       this.#status
     );
   }

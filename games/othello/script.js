@@ -6,7 +6,7 @@ let GAME = new Othello(
   Math.random() < 0.5 ? Othello.STATUS.HUMAN_MOVE : Othello.STATUS.COMPUTER_MOVE
 );
 const $BOARD = $("#board");
-Board.render($BOARD, 8, 8);
+Board.render($BOARD, Othello.NBOARD, Othello.NBOARD);
 const $COLS = $("#board .col");
 const $ALERT = $("#alert");
 const $SCORE_HUMAN = $("#score-human");

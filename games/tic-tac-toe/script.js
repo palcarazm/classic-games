@@ -1,3 +1,4 @@
+import { Board } from "../src/board.js";
 import { TicTacToe } from "./game.js";
 
 let GAME = new TicTacToe(
@@ -7,6 +8,7 @@ let GAME = new TicTacToe(
     : TicTacToe.STATUS.COMPUTER_MOVE
 );
 const $BOARD = $("#board");
+Board.render($BOARD, TicTacToe.NBOARD, TicTacToe.NBOARD);
 const $ALERT = $("#alert");
 const $COLS = $("#board .col");
 

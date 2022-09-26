@@ -29,6 +29,7 @@ export class Othello {
     COMPUTER_MOVE: "computer move",
     GAMEOVER: "gameover",
   };
+  static NBOARD = 8; 
   #status;
   #winner = null;
   #board;
@@ -45,9 +46,9 @@ export class Othello {
       this.#board = board;
     } else {
       this.#board = [];
-      for (let row = 0; row < 8; row++) {
+      for (let row = 0; row < Othello.NBOARD; row++) {
         this.#board[row] = [];
-        for (let col = 0; col < 8; col++) {
+        for (let col = 0; col < Othello.NBOARD; col++) {
           this.#board[row][col] = Othello.PIECES.empty.string;
         }
       }
@@ -63,17 +64,13 @@ export class Othello {
    * @returns Deep copy of game
    */
   clone() {
+    let board = []
+    for (let row = 0; row < Othello.NBOARD; row++) {
+     board.push([...this.#board[row]]);
+      
+    }
     return new Othello(
-      [
-        [...this.#board[0]],
-        [...this.#board[1]],
-        [...this.#board[2]],
-        [...this.#board[3]],
-        [...this.#board[4]],
-        [...this.#board[5]],
-        [...this.#board[6]],
-        [...this.#board[7]],
-      ],
+      board,
       this.#status
     );
   }
