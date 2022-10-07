@@ -1,6 +1,6 @@
 This product employe or contain pieces of code or images from the following sources:
 
-- [Bootstrap 5 Toggle v4.3.2](https://palcarazm.github.io/bootstrap5-toggle/) licensed under MIT
+- [Bootstrap 5 Toggle v4.3.3](https://palcarazm.github.io/bootstrap5-toggle/) licensed under MIT
 - [Bootstrap Darkmode v2.0.0](https://palcarazm.github.io/bs-darkmode/) licensed under MIT
 - [Bootstrap v5.2.1](https://getbootstrap.com/) licensed under MIT
 - [Font Awesome Free v5.15.4](https://fontawesome.com) licensed under Fontawesome Free License (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
