@@ -34,8 +34,11 @@
 
 /** Game logic */
 /* Human Move */
-#board[game-status="human move"] .col.empty{cursor: pointer;}
 #board[game-status="human move"] .col:not(.empty){cursor: not-allowed;}
+#board[game-status="human move"] .col.empty,
+#board[game-status="human move"] .col.circle_selected{
+  cursor: pointer;
+}
 #board .col.empty > i{
     opacity: .5;
     font-size: 3rem;

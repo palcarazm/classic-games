@@ -138,6 +138,23 @@ export class TicTacToe {
         : TicTacToe.COMPUTER.string) + "_selected";
     this.#next();
   }
+  
+  /**
+   * Perform a unselection
+   * @param {int} row Row number [0 to 2]
+   * @param {int} col Column number [0 to 2]
+   */
+  setUnselect(row, col) {
+    this.#board[row][col] =
+    (this.#status == TicTacToe.STATUS.HUMAN_MOVE
+      ? TicTacToe.HUMAN.string
+      : TicTacToe.COMPUTER.string);
+    
+    this.#status =
+    (this.#status == TicTacToe.STATUS.HUMAN_MOVE
+      ? TicTacToe.STATUS.HUMAN_SELECT
+      : TicTacToe.STATUS.COMPUTER_SELECT);
+  }
 
   /**
    * Update game status

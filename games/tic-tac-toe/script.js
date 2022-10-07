@@ -112,6 +112,9 @@ function clickHandler(evt) {
           GAME.computerMove();
           sync();
         }
+      }else if (cell.value == TicTacToe.HUMAN.string + '_selected'){
+        GAME.setUnselect(cell.row, cell.col);
+        sync();
       }
       break;
     case TicTacToe.STATUS.HUMAN_SELECT:
